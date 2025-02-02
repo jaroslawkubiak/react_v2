@@ -25,28 +25,13 @@ function App() {
     },
   ];
 
-  const options2 = [
-    {
-      label: "Purple",
-      value: "purple",
-    },
-    {
-      label: "Violet",
-      value: "violet",
-    },
-    {
-      label: "Yellow",
-      value: "yellow",
-    },
-  ];
-
   return (
     <div className="flex">
       <div>
         <Dropdown options={options} value={selected} onChange={handleSelect} />
       </div>
       <div>
-        <Dropdown options={options2} value={selected} onChange={handleSelect} />
+        <Dropdown options={options} value={selected} onChange={handleSelect} />
       </div>
     </div>
   );

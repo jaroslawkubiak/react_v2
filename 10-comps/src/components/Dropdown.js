@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDropdownCircle,
@@ -8,6 +8,27 @@ import Panel from "./Panel";
 
 export default function Dropdown({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
+  const divElementInDOM = useRef();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (!divElementInDOM.current) {
+        return;
+      }
+
+      // console.log(divElementInDOM.current);
+      if (!divElementInDOM.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handler, true);
+
+    // call automatically when component is removed from screen
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
 
   const handleOptionClick = (option) => {
     setIsOpen(false);
@@ -33,7 +54,7 @@ export default function Dropdown({ options, value, onChange }) {
   );
 
   return (
-    <div className="w-48 relative m-2">
+    <div ref={divElementInDOM} className="w-48 relative m-2">
       <Panel
         className="flex w-30 justify-between items-center"
         onClick={() => setIsOpen(!isOpen)}
