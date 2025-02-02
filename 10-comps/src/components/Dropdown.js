@@ -4,8 +4,10 @@ import {
   IoIosArrowDropdownCircle,
 } from "react-icons/io";
 
+import Panel from "./Panel";
+
 export default function Dropdown({ options, value, onChange }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option) => {
     setIsOpen(false);
@@ -17,7 +19,7 @@ export default function Dropdown({ options, value, onChange }) {
       <div
         onClick={() => handleOptionClick(option)}
         key={option.value}
-        className="text-white bg-purple-500 hover:bg-purple-300 w-30 border-1 pl-3 pr-3 cursor-pointer"
+        className=" hover:bg-sky-100 rounded cursor-pointer p-1"
       >
         {option.label}
       </div>
@@ -25,21 +27,21 @@ export default function Dropdown({ options, value, onChange }) {
   });
 
   const icon = (
-    <span className="text-white">
+    <span className="text-2xl">
       {isOpen ? <IoIosArrowDropdownCircle /> : <IoIosArrowDropleftCircle />}
     </span>
   );
 
   return (
-    <div className="w-48 relative">
-      <span
-        className="bg-purple-800 text-white pl-3 pr-1 border-1 cursor-pointer flex w-30 justify-between items-center"
+    <div className="w-48 relative m-2">
+      <Panel
+        className="flex w-30 justify-between items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         {value?.label || "Select..."}
         {icon}
-      </span>
-      <div>{isOpen && renderedOption}</div>
+      </Panel>
+      {isOpen && <Panel className="absolute top-full ">{renderedOption}</Panel>}
     </div>
   );
 }
