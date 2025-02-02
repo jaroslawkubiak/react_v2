@@ -9,22 +9,35 @@ import {
 } from "react-icons/fa";
 
 function App() {
+  const handleClick = () => {
+    console.log(`click`);
+  };
+
+  const handleMouseOver = () => {
+    console.log(`mouse over`);
+  };
+
   return (
     <div className="flex">
       <div>
-        <Button rounded>
+        <Button rounded onClick={handleClick} className="mb-5">
           <FaApple />
           Plain
         </Button>
       </div>
       <div>
-        <Button primary outline>
+        <Button primary outline onMouseOver={handleMouseOver}>
           <FaAmilia />
           Primary
         </Button>
       </div>
       <div>
-        <Button secondary rounded>
+        <Button
+          secondary
+          rounded
+          onClick={handleClick}
+          onMouseOver={handleMouseOver}
+        >
           <FaCamera />
           Secondary
         </Button>
