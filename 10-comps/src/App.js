@@ -1,65 +1,30 @@
-import Button from "./Button";
-import {
-  FaAmilia,
-  FaApple,
-  FaBell,
-  FaBiking,
-  FaCamera,
-  FaPhone,
-} from "react-icons/fa";
+import Accordion from "./components/Accordion";
 
 function App() {
-  const handleClick = () => {
-    console.log(`click`);
-  };
-
-  const handleMouseOver = () => {
-    console.log(`mouse over`);
-  };
+  const items = [
+    {
+      id: 1,
+      label: "Can I use React on a project",
+      content:
+        "React Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aperiam dolorum, nemo necessitatibus voluptate ea porro praesentium doloremque quibusdam ipsa.",
+    },
+    {
+      id: 2,
+      label: "Can I use TypeScript on a project",
+      content:
+        "TypeScript Officia quaerat inventore distinctio, ducimus repudiandae quibusdam ad non, asperiores, provident assumenda nostrum!",
+    },
+    {
+      id: 3,
+      label: "Can I use JavaScript on a project",
+      content:
+        "JavaScript Consectetur voluptate aut fugiat nihil ea quod expedita numquam molestiae, nulla, sint consequatur earum alias possimus ab voluptates nam nostrum architecto voluptatibus suscipit.",
+    },
+  ];
 
   return (
-    <div className="flex">
-      <div>
-        <Button rounded onClick={handleClick} className="mb-5">
-          <FaApple />
-          Plain
-        </Button>
-      </div>
-      <div>
-        <Button primary outline onMouseOver={handleMouseOver}>
-          <FaAmilia />
-          Primary
-        </Button>
-      </div>
-      <div>
-        <Button
-          secondary
-          rounded
-          onClick={handleClick}
-          onMouseOver={handleMouseOver}
-        >
-          <FaCamera />
-          Secondary
-        </Button>
-      </div>
-      <div>
-        <Button success>
-          <FaPhone />
-          Success
-        </Button>
-      </div>
-      <div>
-        <Button warning>
-          <FaBiking />
-          Warning
-        </Button>
-      </div>
-      <div>
-        <Button danger rounded>
-          <FaBell />
-          Danger
-        </Button>
-      </div>
+    <div>
+      <Accordion items={items} />
     </div>
   );
 }
