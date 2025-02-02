@@ -1,24 +1,51 @@
 import Button from "./Button";
+import {
+  FaAmilia,
+  FaApple,
+  FaBell,
+  FaBiking,
+  FaCamera,
+  FaPhone,
+} from "react-icons/fa";
 
 function App() {
   return (
-    <div>
+    <div className="flex">
       <div>
-        <Button primary>
+        <Button rounded>
+          <FaApple />
+          Plain
+        </Button>
+      </div>
+      <div>
+        <Button primary outline>
+          <FaAmilia />
           Primary
         </Button>
       </div>
       <div>
-        <Button>Secondary</Button>
+        <Button secondary rounded>
+          <FaCamera />
+          Secondary
+        </Button>
       </div>
       <div>
-        <Button>Success</Button>
+        <Button success>
+          <FaPhone />
+          Success
+        </Button>
       </div>
       <div>
-        <Button>Warning</Button>
+        <Button warning>
+          <FaBiking />
+          Warning
+        </Button>
       </div>
       <div>
-        <Button>Danger</Button>
+        <Button danger rounded>
+          <FaBell />
+          Danger
+        </Button>
       </div>
     </div>
   );
