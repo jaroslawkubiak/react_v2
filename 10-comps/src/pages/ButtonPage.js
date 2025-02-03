@@ -9,13 +9,7 @@ import {
 import Button from "../components/Button";
 
 function ButtonPAge() {
-  const handleClick = () => {
-    console.log(`click`);
-  };
-
-  const handleMouseOver = () => {
-    console.log(`mouse over`);
-  };
+  const handleClick = () => {};
 
   return (
     <div className="flex">
@@ -26,18 +20,13 @@ function ButtonPAge() {
         </Button>
       </div>
       <div>
-        <Button primary outline onMouseOver={handleMouseOver}>
+        <Button primary outline>
           <FaAmilia />
           Primary
         </Button>
       </div>
       <div>
-        <Button
-          secondary
-          rounded
-          onClick={handleClick}
-          onMouseOver={handleMouseOver}
-        >
+        <Button secondary rounded onClick={handleClick}>
           <FaCamera />
           Secondary
         </Button>
