@@ -1,37 +1,21 @@
-import ButtonPage from "./pages/ButtonPage";
+import Link from "./components/Link";
+import Route from "./components/Route";
+import DropdownPage from "./pages/DropdownPage";
 import AccordionPage from "./pages/AccordionPage";
-import Dropdown from "./components/Dropdown";
-import { useState } from "react";
 
 function App() {
-  const [selected, setSelected] = useState(null);
-
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
-
-  const options = [
-    {
-      label: "Red",
-      value: "red",
-    },
-    {
-      label: "Green",
-      value: "green",
-    },
-    {
-      label: "Blue",
-      value: "blue",
-    },
-  ];
-
   return (
     <div className="flex">
+      app
+      <Link to="/accordion">accordion</Link>
+      <Link to="/dropdown">dropdown</Link>
       <div>
-        <Dropdown options={options} value={selected} onChange={handleSelect} />
-      </div>
-      <div>
-        <Dropdown options={options} value={selected} onChange={handleSelect} />
+        <Route path="/accordion">
+          <AccordionPage />
+        </Route>
+        <Route path="/dropdown">
+          <DropdownPage />
+        </Route>
       </div>
     </div>
   );
