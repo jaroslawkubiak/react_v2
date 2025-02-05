@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function useCounter(initialCount) {
   const [count, setCount] = useState(initialCount);
+  const [valueToAdd, setValueToAdd] = useState();
 
   useEffect(() => {
     console.log(count);
@@ -15,7 +16,17 @@ function useCounter(initialCount) {
     setCount(count - 1);
   };
 
-  return { count, increment, decrement };
+  const addValue = (e) => {
+    e.preventDefault();
+    setCount(count + valueToAdd);
+    setValueToAdd("");
+  };
+
+  const changeValue = (e) => {
+    setValueToAdd(Number(e.target.value));
+  };
+
+  return { count, increment, decrement, addValue, valueToAdd, changeValue };
 }
 
 export default useCounter;
