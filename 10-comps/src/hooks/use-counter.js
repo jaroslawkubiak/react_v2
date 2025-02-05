@@ -11,7 +11,11 @@ function useCounter(initialCount) {
     setCount(count + 1);
   };
 
-  return { count, increment };
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  return { count, increment, decrement };
 }
 
 export default useCounter;

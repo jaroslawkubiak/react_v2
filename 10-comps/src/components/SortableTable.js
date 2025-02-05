@@ -4,31 +4,14 @@ import {
   LiaArrowsAltVSolid,
 } from "react-icons/lia";
 import Table from "./Table";
-import { useState } from "react";
+import useSort from "../hooks/use-sort";
 
 export default function SortableTable(props) {
   const { config, theadClasses, data } = props;
-  const [sortOrder, setSortOrder] = useState(null); // null -> asc -> desc
-  const [sortBy, setSortBy] = useState(null); // null, score, name OR inna nazwa kolumny
-
-  const handleClick = (label) => {
-    if (sortBy && label !== sortBy) {
-      setSortOrder("asc");
-      setSortBy(label);
-      return;
-    }
-
-    if (!sortOrder) {
-      setSortOrder("asc");
-      setSortBy(label);
-    } else if (sortOrder === "asc") {
-      setSortOrder("desc");
-      setSortBy(label);
-    } else {
-      setSortOrder(null);
-      setSortBy(null);
-    }
-  };
+  const { sortOrder, sortBy, setSortColumn, sortedData } = useSort(
+    data,
+    config
+  );
 
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
@@ -36,7 +19,7 @@ export default function SortableTable(props) {
     }
     const headerClass = "cursor-pointer hover:text-red-500" + theadClasses;
     const header = () => (
-      <th className={headerClass} onClick={() => handleClick(column.label)}>
+      <th className={headerClass} onClick={() => setSortColumn(column.label)}>
         <div className="flex items-center gap-2 ">
           {getIcons(column.label, sortBy, sortOrder)}
           {column.label}
@@ -46,23 +29,6 @@ export default function SortableTable(props) {
 
     return { ...column, header };
   });
-
-  let sortedData = data;
-  if (sortBy && sortOrder) {
-    const { sortValue } = config.find((column) => column.label === sortBy);
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-
-      const reverseOrder = sortOrder === "desc" ? -1 : 1;
-
-      if (typeof valueA === "string") {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
 
   return (
     <div>
