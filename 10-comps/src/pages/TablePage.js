@@ -1,6 +1,8 @@
-import Table from "../components/Table";
+import SortableTable from "../components/SortableTable";
 
 export default function TablePage() {
+  const theadClasses = " py-3 px-6 bg-blue-900 text-white";
+
   const data = [
     { name: "Orange", color: "bg-orange-500", score: 5 },
     { name: "Apple", color: "bg-red-600", score: 3 },
@@ -19,12 +21,17 @@ export default function TablePage() {
     {
       label: "Color",
       className: "flex justify-center items-center h-10",
-      render: (fruit) => <div className={`flex w-3 h-3 ${fruit.color}`}></div>,
+      render: (fruit) => <div className={`flex w-6 h-6 ${fruit.color}`}></div>,
     },
     {
       label: "Score",
       render: (fruit) => fruit.score,
       sortValue: (fruit) => fruit.score,
+    },
+    {
+      label: "Score*2",
+      render: (fruit) => fruit.score ** 2,
+      sortValue: (fruit) => fruit.score ** 2,
     },
   ];
 
@@ -34,7 +41,12 @@ export default function TablePage() {
 
   return (
     <div>
-      <Table data={data} config={config} keyFn={keyFn} />
+      <SortableTable
+        data={data}
+        config={config}
+        keyFn={keyFn}
+        theadClasses={theadClasses}
+      />
     </div>
   );
 }
